@@ -37,7 +37,7 @@ def akkoord():
       len(request.headers.getlist("X-Forwarded-For")))
 
     print("Bezoeker heeft toestemming gegeven.")
-    print("Publiek IP-adres:", ip)
+    print("Proxy-header aanwezig:", bool(request.headers.get("X-Forwarded-For")))
 
     return """
     <h1>Bedankt!</h1>
