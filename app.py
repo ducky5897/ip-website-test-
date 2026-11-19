@@ -33,8 +33,8 @@ def akkoord():
     ip = request.remote_addr
 
     print("Remote address:", request.remote_addr)
-    print("Forwarded header aanwezig:",
-          bool(request.headers.get("X-Forwarded-For")))
+    print("Aantal doorgestuurde IP-adressen:",
+      len(request.headers.getlist("X-Forwarded-For")))
 
     print("Bezoeker heeft toestemming gegeven.")
     print("Publiek IP-adres:", ip)
