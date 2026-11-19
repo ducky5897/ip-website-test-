@@ -15,8 +15,9 @@ def home():
     <body>
         <h1>Welkom!</h1>
         <p>
-        Deze website verwerkt je publieke IP-adres
-        voor netwerkdiagnostiek.
+        Deze website telt het aantal bezoekers op
+        per dag kunt u toesteming geven voor 
+        meer het aantal bezoekers
         </p>
         <form method="POST" action="/akkoord">
             <button type="submit">
@@ -30,6 +31,10 @@ def home():
 @app.route("/akkoord", methods=["POST"])
 def akkoord():
     ip = request.remote_addr
+
+    print("Remote address:", request.remote_addr)
+    print("Forwarded header aanwezig:",
+          bool(request.headers.get("X-Forwarded-For")))
 
     print("Bezoeker heeft toestemming gegeven.")
     print("Publiek IP-adres:", ip)
