@@ -31,7 +31,11 @@ def home():
 @app.route("/akkoord", methods=["POST"])
 def akkoord():
     ip = request.remote_addr
-
+print("Remote:", request.remote_addr)
+print("X-Forwarded-For aanwezig:",
+      bool(request.headers.get("X-Forwarded-For")))
+print("X-Real-IP aanwezig:",
+      bool(request.headers.get("X-Real-IP")))
     print("Remote address:", request.remote_addr)
     print("Aantal doorgestuurde IP-adressen:",
       len(request.headers.getlist("X-Forwarded-For")))
