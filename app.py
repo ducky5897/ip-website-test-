@@ -1,13 +1,42 @@
-from flask import Flask
+
+from flask import Flask, request
 
 app = Flask(__name__)
 
 @app.route("/")
 def home():
     return """
-    <h1>Welkom!</h1>
-    <p>Mijn website werkt!</p>
-    <p>Dit is mijn Python Flask website.</p>
+    <!DOCTYPE html>
+    <html lang="nl">
+    <head>
+        <meta charset="UTF-8">
+        <title>Netwerkdiagnostiek</title>
+    </head>
+    <body>
+        <h1>Welkom!</h1>
+        <p>
+        Deze website verwerkt je publieke IP-adres
+        voor netwerkdiagnostiek.
+        </p>
+        <form method="POST" action="/akkoord">
+            <button type="submit">
+                Ik geef toestemming
+            </button>
+        </form>
+    </body>
+    </html>
+    """
+
+@app.route("/akkoord", methods=["POST"])
+def akkoord():
+    ip = request.remote_addr
+
+    print("Bezoeker heeft toestemming gegeven.")
+    print("Publiek IP-adres:", ip)
+
+    return """
+    <h1>Bedankt!</h1>
+    <p>Je toestemming is geregistreerd.</p>
     """
 
 if __name__ == "__main__":
